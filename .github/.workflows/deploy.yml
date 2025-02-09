@@ -1,0 +1,20 @@
+name: Deploy to vps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: 161.22.45.252
+          port: 2222
+          username: navet21
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: "cd /var/www/html/EcoCompostajeV2/; ./.scripts/prod.sh"
