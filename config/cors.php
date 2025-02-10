@@ -1,12 +1,20 @@
 <?php
 
 return [
-    'paths' => ['*'],
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'OPTIONS'],
-    'allowed_origins' => ['https://navet21.github.io/frontcompostaje/'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+
+    'allowed_methods' => ['*'],
+
+    'allowed_origins' => ['*'],
+
     'allowed_origins_patterns' => [],
-    'allowed_headers' => ['Origin', 'Content-Type', 'X-Auth-Token', 'Cookie'],
+
+    'allowed_headers' => ['*'],
+
     'exposed_headers' => [],
+
     'max_age' => 0,
+
     'supports_credentials' => true,
+
 ];
