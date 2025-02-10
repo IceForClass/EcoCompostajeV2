@@ -1,12 +1,25 @@
 <?php
 
-return [
-    'paths' => ['*'],
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'OPTIONS'],
-    'allowed_origins' => ['https://navet21.github.io/frontcompostaje/'],
-    'allowed_origins_patterns' => [],
-    'allowed_headers' => ['Origin', 'Content-Type', 'X-Auth-Token', 'Cookie'],
-    'exposed_headers' => [],
-    'max_age' => 0,
-    'supports_credentials' => true,
-];
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class Cors
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        $response = $next($request);
+        $response->headers->set('Access-Control-Allow-Origin', 'https://navet21.github.io/frontcompostaje/');
+        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
+
+        return $response;
+    }
+}
