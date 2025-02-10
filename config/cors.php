@@ -5,7 +5,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://navet21.github.io/frontcompostaje/*'],
+    'allowed_origins' => ['https://navet21.github.io/frontcompostaje'],
 
     'allowed_origins_patterns' => [],
 
