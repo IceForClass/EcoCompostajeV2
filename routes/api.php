@@ -51,7 +51,7 @@ Route::group(['as' => 'api.'], function() {
     Orion::belongsToResource('user','centro',UserCentroController::class);
 });
 
-Route::get ('registrosBolo/{id}' , [BoloController::class,'registrosBolo']);
+Route::get ('registrosBolo/{id}' , [BoloController::class,'antesBolo']);
 
 //Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 //Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
