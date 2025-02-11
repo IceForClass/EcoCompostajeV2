@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->string('direccion');
-            $table->integer('codigo');
             $table->enum('tipo', ['privado', 'publico']);
             $table->string('personaResponsable')->nullable();
         });

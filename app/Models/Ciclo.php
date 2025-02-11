@@ -19,4 +19,14 @@ class Ciclo extends Model
     public function bolo(){
         return $this->belongsTo(Bolo::class);
     }
+    
+    public function compostera()
+    {
+        return $this->belongsTo(Compostera::class);
+    }
+
+    public function antes()
+    {
+        return $this->hasOne(Antes::class, 'registro_id', 'registro_id');
+    }
 }
