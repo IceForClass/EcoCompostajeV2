@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Registro extends Model
+{
+    /** @use HasFactory<\Database\Factories\RegistroFactory> */
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'ciclo_id', 'compostera_id', 'fecha'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function bolo(){
+        return $this->belongsTo(Bolo::class);
+    }
+
+    public function compostera(){
+        return $this->belongsTo(Compostera::class);
+    }
+
+    public function registroable(){
+        return $this->morphTo();
+    }
+}
