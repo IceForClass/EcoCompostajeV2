@@ -11,7 +11,7 @@ class Despues extends Model
     use HasFactory;
     protected $fillable = ['registro_id', 'nivel_llenado', 'foto', 'observaciones'];
 
-    public function registros(){
-        return $this->morphMany(Registro::class, "registroable");
+    public function registro(){
+        return $this->belongsTo(Registro::class,'registro_id');
     }
 }
