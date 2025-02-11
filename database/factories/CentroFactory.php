@@ -2,26 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Centro;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Centro>
- */
 class CentroFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Centro::class;
+
+    public function definition()
     {
         return [
             'nombre' => $this->faker->company,
             'direccion' => $this->faker->address,
-            'codigo' => $this->faker->unique()->randomNumber(5), // Código aleatorio de 5 dígitos
-            'tipo' => $this->faker->randomElement(['privado', 'publico']), // Enum aleatorio
-            'personaResponsable' => $this->faker->optional()->name, // Puede ser nulo
+            'tipo' => $this->faker->randomElement(['publico', 'privado']),
+            'personaResponsable' => $this->faker->name,
         ];
     }
 }

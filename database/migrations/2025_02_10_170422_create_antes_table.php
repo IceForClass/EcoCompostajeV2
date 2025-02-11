@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('antes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('registro_id')->unsigned()->index();
-            $table->foreign('registro_id')->references('id')->on('registros')->onDelete('cascade');
+            $table->foreign('registro_id')->references('id')->on('registros');
             $table->float('temp_ambiente', 3, 1)->nullable();
             $table->float('temp_compostera', 3, 1)->nullable();
             $table->enum('nivel_llenado', [

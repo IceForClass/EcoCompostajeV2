@@ -13,7 +13,7 @@ class Antes extends Model
 
     protected $fillable = ['registro_id', 'temp_ambiente', 'temp_compostera', 'nivel_llenado', 'olor', 'insectos', 'tipo_insectos', 'humedad', 'fotos', 'observaciones'];
 
-    public function registros(){
-        return $this->morphMany(Registro::class, "registroable");
+    public function registro(){
+        return $this->belongsTo(Registro::class,'registro_id');
     }
 }

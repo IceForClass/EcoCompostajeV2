@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('durantes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('registro_id')->unsigned()->index();
-            $table->foreign('registro_id')->references('id')->on('registros')->onDelete('cascade');
+            $table->foreign('registro_id')->references('id')->on('registros');
             $table->boolean('riego')->default(false)->nullable(); // riego
             $table->boolean('remover')->default(false)->nullable(); // remover
             $table->boolean('aporte_verde')->default(false)->nullable(); // aporte verde
