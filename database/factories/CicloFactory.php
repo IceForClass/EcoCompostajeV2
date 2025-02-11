@@ -17,7 +17,8 @@ class CicloFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'bolo_id' => \App\Models\Bolo::pluck('id')->random(),
+            'final' => $this->faker->dateTimeThisYear,
         ];
     }
 }

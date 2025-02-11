@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Antes;
+use App\Models\Registro;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +11,27 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AntesFactory extends Factory
 {
+    protected $model = Antes::class;
+
     /**
      * Define the model's default state.
-     *
-     * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            //
+            'registro_id' => Registro::inRandomOrder()->first()->id ?? Registro::factory(),
+            'temp_ambiente' => $this->faker->randomFloat(1, 15, 30),
+            'temp_compostera' => $this->faker->randomFloat(1, 10, 40),
+            'nivel_llenado' => $this->faker->randomElement([
+                '0%', '12.5%', '25%', '37.5%', '50%', '62.5%', '75%', '87.5%', '100%'
+            ]),
+            'olor' => $this->faker->randomElement(['Sin mal olor', 'Neutral', 'Podrido', 'Otro']),
+            'insectos' => $this->faker->boolean(),
+            'tipos_insectos' => implode(',', $this->faker->randomElements(["larvas", "hormigas", "mosquitos", "gusanos"], 2)),
+            'humedad' => $this->faker->randomElement(['Deficiente', 'Bueno', 'Excesivo']),
+            'foto' => $this->faker->imageUrl(),
+            'observaciones' => $this->faker->sentence(),
         ];
     }
+    
 }
