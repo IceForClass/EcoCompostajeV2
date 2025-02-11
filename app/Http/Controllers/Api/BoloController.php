@@ -25,6 +25,11 @@ class BoloController extends Controller
         $bolo = Bolo::where('cicle1',true)->where('cicle2',true)->where('cicle3',true)->where('finish',false)->first();
         return response()->json($bolo,200);
     }
+
+    public function registrosBolo($id){
+        $registros = Bolo::find($id)->registros;
+        return response()->json($registros,200);
+    }
     
 
 }
