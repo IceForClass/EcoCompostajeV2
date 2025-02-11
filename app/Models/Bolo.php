@@ -15,4 +15,17 @@ class Bolo extends Model
     public function ciclos(){
         return $this->hasMany(Ciclo::class);
     }
+    
+    public function registros()
+{
+    return $this->hasManyThrough(
+        Registro::class,  // Modelo final (Registros)
+        Ciclo::class,     // Modelo intermedio (Ciclo)
+        "bolo_id",        // Clave foránea en la tabla intermedia (Ciclo)
+        "ciclo_id",       // Clave foránea en la tabla final (Registro)
+        "id",             // Clave primaria en la tabla principal (Bolo)
+        "id"              // Clave primaria en la tabla intermedia (Ciclo)
+    );
+}
+
 }
