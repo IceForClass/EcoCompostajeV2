@@ -8,6 +8,7 @@ use Orion\Http\Controllers\Controller;
 
 class BoloController extends Controller
 {
+    use DisableAuthorization;
 
     protected $model = Bolo::class; // or "App\Models\Post"
 
