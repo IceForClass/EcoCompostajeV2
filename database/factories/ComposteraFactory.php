@@ -2,22 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Compostera;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Compostera>
- */
 class ComposteraFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Compostera::class;
+
+    public function definition()
     {
         return [
-            //
+            'tipo' => $this->faker->randomElement(['aporte', 'degradacion', 'maduracion']),
+            'centro_id' => null, // Se asigna en el seeder
+            'ocupada' => $this->faker->boolean(30), // 30% de probabilidad de estar ocupada
         ];
     }
 }
