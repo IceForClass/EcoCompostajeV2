@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Policies\UserPolicy;
+use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 
 class UserCentroController extends RelationController
 {
+    use DisableAuthorization;
+
     /**
      * Fully-qualified model class name
      */

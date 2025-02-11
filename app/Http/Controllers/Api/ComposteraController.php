@@ -11,7 +11,7 @@ use Orion\Http\Controllers\Controller;
 class ComposteraController extends Controller
 {
     // use DisableAuthorization;
-    use DisablePagination;
+    use DisablePagination, DisableAuthorization;
     protected $model = Compostera::class; 
 
     protected $policy = ComposteraPolicy::class;

@@ -8,6 +8,8 @@ use Orion\Http\Controllers\Controller;
 
 class ComposterasController extends Controller
 {
+    use DisableAuthorization;
+
 
     // use DisableAuthorization;
     protected $model = Compostera::class; // or "App\Models\Post"
