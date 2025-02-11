@@ -12,7 +12,7 @@ class Durante extends Model
 
     protected $fillable = ['registro_id', 'riego', 'remover', 'aporte_verde', 'cantidad_aporteV', 'tipo_aporteV', 'aporte_seco', 'cantidad_aporteS', 'tipo_aporteS', 'foto', 'observaciones'];
 
-    public function registros(){
-        return $this->morphMany(Registro::class, "registroable");
+    public function registro(){
+        return $this->belongsTo(Registro::class,'registro_id');
     }
 }

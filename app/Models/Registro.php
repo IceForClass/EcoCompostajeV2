@@ -24,7 +24,15 @@ class Registro extends Model
         return $this->belongsTo(Compostera::class);
     }
 
-    public function registroable(){
-        return $this->morphTo();
+    public function antes(){
+        return $this->hasMany(Antes::class);
+    }
+
+    public function durante(){
+        return $this->hasMany(Durante::class);
+    }
+
+    public function despues(){
+        return $this->hasMany(Despues::class);
     }
 }
