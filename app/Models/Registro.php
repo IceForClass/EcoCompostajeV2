@@ -24,18 +24,15 @@ class Registro extends Model
         return $this->belongsTo(Compostera::class);
     }
 
-    public function antes()
-    {
+    public function antes(){
         return $this->hasMany(Antes::class);
     }
 
-    public function durante()
-    {
+    public function durante(){
         return $this->hasMany(Durante::class);
     }
 
-    public function despues()
-    {
+    public function despues(){
         return $this->hasMany(Despues::class);
     }
 }

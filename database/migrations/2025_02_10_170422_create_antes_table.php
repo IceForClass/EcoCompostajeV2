@@ -32,8 +32,8 @@ return new class extends Migration
             $table->boolean('insectos')->nullable();
             $table->set('tipos_insectos',["larvas","hormigas","mosquitos","gusanos"])->nullable();
             $table->enum('humedad', ['Deficiente','Bueno','Excesivo'])->nullable();
-            $table->string('foto')->nullable(); // initial photos (URL of the image)
-            $table->text('observaciones')->nullable(); // initial observations
+            $table->string('foto')->nullable();
+            $table->text('observaciones')->nullable(); 
             $table->timestamps();
         });
     }
