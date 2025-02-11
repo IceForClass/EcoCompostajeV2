@@ -8,6 +8,8 @@ use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 class CentroComposterasController extends RelationController
 {
+
+    use DisableAuthorization;
     /**
      * Fully-qualified model class name
      */
