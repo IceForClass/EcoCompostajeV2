@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string("nombre");
             $table->string("descripcion");
-            $table->set("ciclos",["ciclo1","ciclo2","ciclo3","terminado"]);
+            $table->enum("ciclos",["ciclo1","ciclo2","ciclo3","terminado"]);
         });
     }
 
