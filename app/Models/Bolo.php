@@ -26,6 +26,14 @@ class Bolo extends Model
         "id",             // Clave primaria en la tabla principal (Bolo)
         "id"              // Clave primaria en la tabla intermedia (Ciclo)
     );
+
+    
 }
+
+public function antes()
+{
+    return $this->hasManyThrough(Antes::class, Registro::class, 'ciclo_id', 'registro_id');
+}
+
 
 }
