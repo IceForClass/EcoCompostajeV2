@@ -2,30 +2,29 @@
 
 namespace Database\Factories;
 
-use App\Models\Registro;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Registro;
+use App\Models\User;
+use App\Models\Ciclo;
+use App\Models\Compostera;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Registro>
+ */
 class RegistroFactory extends Factory
 {
     protected $model = Registro::class;
 
-    public function definition()
+    /**
+     * Define the model's default state.
+     */
+    public function definition(): array
     {
-        $registroableTypes = [
-            \App\Models\Antes::class,
-            \App\Models\Durante::class,
-            \App\Models\Despues::class
-        ];
-
         return [
-            'ciclo_id' => null, // Se asigna en el seeder
-            'compostera_id' => null, // Se asigna en el seeder
-            'user_id' => null, // Se asigna en el seeder
-            'fecha' => $this->faker->date(),
-
-            // Asignamos aleatoriamente un tipo de registro
-            'registroable_id' => null, // Se asigna en el seeder
-            'registroable_type' => $this->faker->randomElement($registroableTypes),
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory(),
+            'ciclo_id' => Ciclo::inRandomOrder()->first()->id ?? Ciclo::factory(),
+            'compostera_id' => Compostera::inRandomOrder()->first()->id ?? Compostera::factory(),
+            'fecha' => $this->faker->dateTimeBetween('-1 month', 'now'),
         ];
     }
 }

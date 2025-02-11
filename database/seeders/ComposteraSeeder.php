@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Centro;
 use App\Models\Compostera;
 
 class ComposteraSeeder extends Seeder
@@ -13,26 +13,16 @@ class ComposteraSeeder extends Seeder
      */
     public function run(): void
     {
-        Compostera::factory()->create(
-            [
-                'tipo' => 'aporte',
-                'centro_id' => '1',
-                'ocupada' => '0',
-            ]
-        );
-        Compostera::factory()->create(
-            [
-                'tipo' => 'degradacion',
-                'centro_id' => '1',
-                'ocupada' => '0',
-            ]
-        );
-        Compostera::factory()->create(
-            [
-                'tipo' => 'maduracion',
-                'centro_id' => '1',
-                'ocupada' => '0',
-            ]
-        );
+        $tipos = ["aporte", "degradacion", "maduracion"];
+
+        Centro::all()->each(function ($centro) use ($tipos) {
+            foreach ($tipos as $tipo) {
+                Compostera::create([
+                    'centro_id' => $centro->id,
+                    'tipo' => $tipo,
+                    'ocupada' => true,
+                ]);
+            }
+        });
     }
 }

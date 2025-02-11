@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bolo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Bolo;
 
 class BoloSeeder extends Seeder
 {
@@ -15,21 +15,26 @@ class BoloSeeder extends Seeder
     {
         Bolo::create([
             'nombre' => 'Bolo A',
-            'descripcion' => 'Descripcion del Bolo A',
-            'ciclos' => implode(',', ["ciclo1", "ciclo2", "ciclo3", "terminado"]) // Convertir a string
+            'descripcion' => 'Descripción del Bolo A',
+            'ciclos' => 'ciclo1',
         ]);
-        
+
         Bolo::create([
             'nombre' => 'Bolo B',
-            'descripcion' => 'Descripcion del Bolo B',
-            'ciclos' => implode(',', ["ciclo1", "ciclo2", "ciclo3", "terminado"]) // Convertir a string
+            'descripcion' => 'Descripción del Bolo B',
+            'ciclos' => 'ciclo1,ciclo2',
         ]);
-        
+
         Bolo::create([
             'nombre' => 'Bolo C',
-            'descripcion' => 'Descripcion del Bolo C',
-            'ciclos' => implode(',', ["ciclo1", "ciclo2"]) // Convertir a string
+            'descripcion' => 'Descripción del Bolo C',
+            'ciclos' => 'ciclo1,ciclo2,ciclo3',
         ]);
-        
+
+        Bolo::create([
+            'nombre' => 'Bolo D',
+            'descripcion' => 'Descripción del Bolo D',
+            'ciclos' => 'ciclo1,ciclo2,ciclo3,terminado',
+        ]);
     }
 }

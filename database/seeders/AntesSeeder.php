@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Antes;
 use App\Models\Registro;
+use App\Models\Antes;
 
 class AntesSeeder extends Seeder
 {
@@ -14,10 +13,12 @@ class AntesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Genera un before para cada registro existente
         $registros = Registro::all();
+
         foreach ($registros as $registro) {
-            Antes::factory()->create(['registro_id' => $registro->id]);
+            Antes::factory(3)->create([
+                'registro_id' => $registro->id,
+            ]);
         }
     }
 }
