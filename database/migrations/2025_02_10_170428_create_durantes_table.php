@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('registro_id')->unsigned()->index();
             $table->foreign('registro_id')->references('id')->on('registros')->onDelete('cascade');
-            $table->boolean('riego')->default(false)->nullable(); // riego
-            $table->boolean('remover')->default(false)->nullable(); // remover
-            $table->boolean('aporte_verde')->default(false)->nullable(); // aporte verde
-            $table->integer('cantidad_aporteV')->nullable(); // cantidad verde
-            $table->string('tipo_aporteV')->nullable(); // tipo verde
-            $table->boolean('aporte_seco')->default(false)->nullable(); // aporte seco
-            $table->integer('cantidad_aporteS')->nullable(); // cantidad seco
-            $table->string('tipo_aporteS')->nullable(); // tipo seco
+            $table->boolean('riego')->default(false)->nullable();
+            $table->boolean('remover')->default(false)->nullable();
+            $table->boolean('aporte_verde')->default(false)->nullable();
+            $table->integer('cantidad_aporteV')->nullable();
+            $table->string('tipo_aporteV')->nullable();
+            $table->boolean('aporte_seco')->default(false)->nullable();
+            $table->integer('cantidad_aporteS')->nullable();
+            $table->string('tipo_aporteS')->nullable();
             $table->string('foto')->nullable();
             $table->string('observaciones')->nullable();
             $table->timestamps();

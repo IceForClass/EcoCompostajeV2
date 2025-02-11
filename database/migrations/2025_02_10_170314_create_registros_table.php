@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->morphs("registroable");
             $table->bigInteger("user_id")->unsigned()->index();
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->bigInteger("ciclo_id")->unsigned()->index();
