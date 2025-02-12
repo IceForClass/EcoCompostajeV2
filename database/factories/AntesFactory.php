@@ -19,7 +19,16 @@ class AntesFactory extends Factory
      */
     public function definition(): array
     {
-        $randomTimestamp = Carbon::now()->subDays(rand(0, 30))->subHours(rand(0, 23))->subMinutes(rand(0, 59));
+        static $lastTimestamp = null;
+    
+        // Si es la primera vez, empezamos desde hoy
+        if (!$lastTimestamp) {
+            $lastTimestamp = Carbon::now();
+        } else {
+            // Incrementamos la última fecha generada
+            $lastTimestamp = $lastTimestamp->copy()->addDays(rand(0, 3))->addHours(rand(0, 12))->addMinutes(rand(0, 59));
+        }
+    
         return [
             'registro_id' => Registro::inRandomOrder()->first()->id ?? Registro::factory(),
             'temp_ambiente' => $this->faker->randomFloat(1, 15, 30),
@@ -33,9 +42,10 @@ class AntesFactory extends Factory
             'humedad' => $this->faker->randomElement(['Deficiente', 'Bueno', 'Excesivo']),
             'foto' => $this->faker->imageUrl(),
             'observaciones' => $this->faker->sentence(),
-            'created_at' => $randomTimestamp,
-            'updated_at' => $randomTimestamp->copy()->addMinutes(rand(0, 1440)),
+            'created_at' => $lastTimestamp,
+            'updated_at' => $lastTimestamp->copy()->addMinutes(rand(0, 1440)),
         ];
     }
+    
     
 }
