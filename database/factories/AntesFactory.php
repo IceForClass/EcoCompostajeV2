@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Antes;
 use App\Models\Registro;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,16 @@ class AntesFactory extends Factory
      */
     public function definition(): array
     {
+        static $lastTimestamp = null;
+    
+        // Si es la primera vez, empezamos desde hoy
+        if (!$lastTimestamp) {
+            $lastTimestamp = Carbon::now();
+        } else {
+            // Incrementamos la última fecha generada
+            $lastTimestamp = $lastTimestamp->copy()->addDays(rand(0, 3))->addHours(rand(0, 12))->addMinutes(rand(0, 59));
+        }
+    
         return [
             'registro_id' => Registro::inRandomOrder()->first()->id ?? Registro::factory(),
             'temp_ambiente' => $this->faker->randomFloat(1, 15, 30),
@@ -31,7 +42,10 @@ class AntesFactory extends Factory
             'humedad' => $this->faker->randomElement(['Deficiente', 'Bueno', 'Excesivo']),
             'foto' => $this->faker->imageUrl(),
             'observaciones' => $this->faker->sentence(),
+            'created_at' => $lastTimestamp,
+            'updated_at' => $lastTimestamp->copy()->addMinutes(rand(0, 1440)),
         ];
     }
+    
     
 }

@@ -8,6 +8,8 @@ use Orion\Http\Controllers\RelationController;
 
 class CicloBoloController extends RelationController
 {
+    use DisableAuthorization;
+
     /**
      * Fully-qualified model class name
      */

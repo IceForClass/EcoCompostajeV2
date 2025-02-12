@@ -8,6 +8,8 @@ use Orion\Http\Controllers\RelationController;
 
 class RegistroAntesController extends RelationController
 {
+    use DisableAuthorization;
+
     /**
      * Fully-qualified model class name
      */
@@ -19,4 +21,3 @@ class RegistroAntesController extends RelationController
      */
     protected $relation = 'antes';
 }
-

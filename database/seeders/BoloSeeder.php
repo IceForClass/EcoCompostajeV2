@@ -22,19 +22,19 @@ class BoloSeeder extends Seeder
         Bolo::create([
             'nombre' => 'Bolo B',
             'descripcion' => 'Descripción del Bolo B',
-            'ciclos' => 'ciclo1,ciclo2',
+            'ciclos' => 'ciclo2',
         ]);
 
         Bolo::create([
             'nombre' => 'Bolo C',
             'descripcion' => 'Descripción del Bolo C',
-            'ciclos' => 'ciclo1,ciclo2,ciclo3',
+            'ciclos' => 'ciclo3',
         ]);
 
         Bolo::create([
             'nombre' => 'Bolo D',
             'descripcion' => 'Descripción del Bolo D',
-            'ciclos' => 'ciclo1,ciclo2,ciclo3,terminado',
+            'ciclos' => 'terminado',
         ]);
     }
 }
