@@ -14,11 +14,9 @@ class DespuesSeeder extends Seeder
      */
     public function run(): void
     {
-        $registros = Registro::all();
-
-        foreach ($registros as $registro) {
-            Despues::factory(3)->create([
-                'registro_id' => $registro->id,
+        for ($i = 1; $i <= 3; $i++) { 
+            Despues::factory()->create([
+                'registro_id' => $i,
             ]);
         }
     }
