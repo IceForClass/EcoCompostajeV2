@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orion\Concerns\DisableAuthorization;
 
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
+
 class Registro extends Model
 {
     /** @use HasFactory<\Database\Factories\RegistroFactory> */
@@ -14,12 +16,19 @@ class Registro extends Model
     protected $fillable = ['user_id', 'ciclo_id', 'compostera_id', 'fecha'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
-    public function bolo(){
-        return $this->belongsTo(Bolo::class);
+    public function bolo()
+    {
+    return $this->hasOne(Bolo::class, 'id', 'bolo_id')
+                ->join('ciclos', 'bolos.id', '=', 'ciclos.bolo_id')
+                ->whereColumn('ciclos.id', 'registros.ciclo_id');
     }
+
+
+
+
 
     public function compostera(){
         return $this->belongsTo(Compostera::class);
@@ -35,5 +44,9 @@ class Registro extends Model
 
     public function despues(){
         return $this->hasMany(Despues::class);
+    }
+
+    public function ciclo(){
+        return $this->belongsTo(Ciclo::class, 'ciclo_id');
     }
 }
