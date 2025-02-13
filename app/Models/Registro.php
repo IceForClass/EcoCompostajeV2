@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orion\Concerns\DisableAuthorization;
 
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Registro extends Model
 {
     /** @use HasFactory<\Database\Factories\RegistroFactory> */
-    use HasRelationships;
-    
+    use HasFactory, DisableAuthorization;
 
     protected $fillable = ['user_id', 'ciclo_id', 'compostera_id', 'fecha'];
 

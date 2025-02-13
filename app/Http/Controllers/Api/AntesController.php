@@ -8,6 +8,7 @@ use Orion\Http\Controllers\Controller;
 
 class AntesController extends Controller
 {
+    use DisableAuthorization;
 
     protected $model = Antes::class; // or "App\Models\Post"
 

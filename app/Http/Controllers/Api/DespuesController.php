@@ -8,6 +8,7 @@ use Orion\Http\Controllers\Controller;
 
 class DespuesController extends Controller
 {
+    use DisableAuthorization;
 
     use DisableAuthorization;
     protected $model = Despues::class; // or "App\Models\Post"
