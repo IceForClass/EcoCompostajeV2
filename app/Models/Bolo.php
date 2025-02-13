@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Bolo extends Model
 {
     /** @use HasFactory<\Database\Factories\BoloFactory> */
-    use HasFactory;
+    use HasFactory ;
     protected $fillable = ['nombre', 'descripcion', 'ciclos'];
 
     public function ciclos(){
@@ -33,6 +34,7 @@ public function antes()
 {
     return $this->hasManyThrough(Antes::class, Registro::class, 'ciclo_id', 'registro_id');
 }
+
 
 
 }
