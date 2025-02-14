@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orion\Concerns\DisableAuthorization;
-
-use Staudenmeir\EloquentHasManyDeep\HasRelationships;
+use \Znck\Eloquent\Traits\BelongsToThrough;
 
 class Registro extends Model
 {
@@ -21,13 +20,10 @@ class Registro extends Model
 
     public function bolo()
 {
+    
     return $this->belongsToThrough(Bolo::class, Ciclo::class)
-                ->select('bolos.nombre'); // Solo trae la columna 'nombre'
+                ->select('bolos.nombre');
 }
-
-
-
-
 
     public function compostera(){
         return $this->belongsTo(Compostera::class);
