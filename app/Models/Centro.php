@@ -19,6 +19,14 @@ class Centro extends Model
         return $this->hasMany(User::class);
     }
 
+    public function registros()
+    {
+        return $this->hasManyThrough(
+            Registro::class,Compostera::class,
+            'centro_id','compostera_id',  
+            'id','id'                   
+        );
+    }
 
     public function composteras()
     {
