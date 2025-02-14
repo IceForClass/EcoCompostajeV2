@@ -20,11 +20,10 @@ class Registro extends Model
     }
 
     public function bolo()
-    {
-    return $this->hasOne(Bolo::class, 'id', 'bolo_id')
-                ->join('ciclos', 'bolos.id', '=', 'ciclos.bolo_id')
-                ->whereColumn('ciclos.id', 'registros.ciclo_id');
-    }
+{
+    return $this->belongsToThrough(Bolo::class, Ciclo::class)
+                ->select('bolos.nombre'); // Solo trae la columna 'nombre'
+}
 
 
 
