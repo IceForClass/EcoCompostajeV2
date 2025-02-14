@@ -8,6 +8,7 @@ use Orion\Http\Controllers\RelationController;
 
 class RegistroDurantesController extends RelationController
 {
+    use DisableAuthorization;
     /**
      * Fully-qualified model class name
      */
