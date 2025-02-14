@@ -54,6 +54,7 @@ Route::group(['as' => 'api.'], function() {
 Route::get ('antesBolo/{id}' , [BoloController::class,'antesBolo']);
 Route::get ('registrosBolo/{id}',[BoloController::class,'registrosBolo']);
 Route::get("centrosPublicos",[CentrosController::class,'centrosPublicos']);
+Route::get("bolosUsuarios", [RegistroController::class,"boloUsuario"]);
 
 //Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 //Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
