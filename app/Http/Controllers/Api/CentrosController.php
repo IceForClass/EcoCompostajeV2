@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Centro;
+use App\Models\Compostera;
+use App\Models\Registro;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller;
 
@@ -16,4 +18,11 @@ class CentrosController extends Controller
         $centro = Centro::where("tipo","publico")->get();
         return response()->json($centro);
     }
+
+    public function registros($id)
+    {
+        $registros = Centro::find($id)->registros;
+        return response()->json($registros, 200);
+    }
+    
 }
