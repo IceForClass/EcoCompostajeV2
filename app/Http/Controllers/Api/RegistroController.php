@@ -22,4 +22,12 @@ class RegistroController extends ControllersController
         return response()->json($registro,200);
     }
 
+    public function boloUsuario(){
+        $datos = Registro::with([
+            'ciclo.bolo:id,nombre',
+            'user:id,name'
+        ])->get();
+        return response()->json($datos,200);
+    }
+
 }
