@@ -21,7 +21,7 @@ class CentrosController extends Controller
 
     public function registros($id)
     {
-        $registros = Centro::find($id)->registros;
+        $registros = Centro::find($id)->registros()->paginate(15);
         return response()->json($registros, 200);
     }
     

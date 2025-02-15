@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Registro;
 use Orion\Concerns\DisableAuthorization;
-use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller;
 
 class RegistrosController extends Controller

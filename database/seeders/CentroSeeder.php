@@ -9,14 +9,6 @@ class CentroSeeder extends Seeder
 {
     public function run(): void
     {
-        
-        Centro::factory()->create(
-            [
-                'tipo' => 'publico',
-                'nombre' => 'CIFP Majada Marcial',
-                "direccion" => "Calle Los Camelleros, 162, Puerto del Rosario, España"
-            ]
-        );
         Centro::factory()->create(
             [
                 'tipo' => 'publico',
@@ -27,11 +19,24 @@ class CentroSeeder extends Seeder
         Centro::factory()->create(
             [
                 'tipo' => 'publico',
-                'nombre' => 'Universidad de la Laguna',
-                'direccion' => 'Calle Padre Herrera, s/n, La Laguna, España'
+                'nombre' => 'CEIP La Hubara',
+                'direccion' => 'Calle Manuel Sánchez González, s/n, Puerto del Rosario, España'
             ]
         );
-        Centro::factory(9)->create();
+        Centro::factory()->create(
+            [
+                'tipo' => 'publico',
+                'nombre' => 'Los Pajeros',
+                'direccion' => 'Calle Los Pajeros, s/n, Puerto del Rosario, España'
+            ]
+        );
+        Centro::factory()->create(
+            [
+                'tipo' => 'publico',
+                'nombre' => 'CEIP El Tostón',
+                'direccion' => 'Calle Lugar Muelle de los Pescadores, s/n, El Cotillo, España'
+            ]
+        );
+        // Centro::factory(9)->create();
     }
 }
-

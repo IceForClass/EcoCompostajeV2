@@ -36,5 +36,18 @@ class BoloSeeder extends Seeder
             'descripcion' => 'Descripción del Bolo D',
             'ciclos' => 'terminado',
         ]);
+
+        $bolos = [];
+
+        foreach (range('E', 'Z') as $letter) {
+            $bolos[] = [
+                'nombre' => "Bolo $letter",
+                'descripcion' => "Descripción del Bolo $letter",
+                'ciclos' => "terminado", // Todos los bolos en estado "terminado"
+            ];
+        }
+
+        Bolo::insert($bolos);
+
     }
 }
