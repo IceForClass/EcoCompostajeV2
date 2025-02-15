@@ -9,14 +9,6 @@ class CentroSeeder extends Seeder
 {
     public function run(): void
     {
-        
-        Centro::factory()->create(
-            [
-                'tipo' => 'publico',
-                'nombre' => 'CIFP Majada Marcial',
-                "direccion" => "Calle Los Camelleros, 162, Puerto del Rosario, España"
-            ]
-        );
         Centro::factory()->create(
             [
                 'tipo' => 'publico',
