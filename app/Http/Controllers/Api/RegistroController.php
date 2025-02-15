@@ -25,7 +25,7 @@ class RegistroController extends ControllersController
         $datos = Registro::with([
             'ciclo.bolo:id,nombre',
             'user:id,name'
-        ])->get();
+        ])->paginate(15);
         return response()->json($datos,200);
     }
 
