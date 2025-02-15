@@ -15,7 +15,7 @@ class CentrosController extends Controller
     protected $model = Centro::class; // or "App\Models\Post"
 
     public function centrosPublicos(){
-        $centro = Centro::where("tipo","publico");
+        $centro = Centro::where("tipo","publico")->get();
         return response()->json($centro);
     }
 
