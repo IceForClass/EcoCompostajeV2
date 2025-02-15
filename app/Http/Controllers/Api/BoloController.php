@@ -35,6 +35,4 @@ class BoloController extends Controller
         $registros = Bolo::find($id)->antes;
         return response()->json($registros, 200);
     }
-    
-
 }
