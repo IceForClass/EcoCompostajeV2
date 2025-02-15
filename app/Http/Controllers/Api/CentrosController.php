@@ -15,13 +15,13 @@ class CentrosController extends Controller
     protected $model = Centro::class; // or "App\Models\Post"
 
     public function centrosPublicos(){
-        $centro = Centro::where("tipo","publico")->get();
+        $centro = Centro::where("tipo","publico");
         return response()->json($centro);
     }
 
     public function registros($id)
     {
-        $registros = Centro::find($id)->registros;
+        $registros = Centro::find($id)->registros()->paginate(15);
         return response()->json($registros, 200);
     }
     
