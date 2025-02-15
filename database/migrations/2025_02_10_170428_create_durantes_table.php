@@ -18,10 +18,12 @@ return new class extends Migration
             $table->boolean('riego')->default(false)->nullable();
             $table->boolean('remover')->default(false)->nullable();
             $table->boolean('aporte_verde')->default(false)->nullable();
-            $table->integer('cantidad_aporteV')->nullable();
+            $table->integer('cantidad_aporteVLitros')->nullable();
+            $table->integer('cantidad_aporteVKilos')->nullable();
             $table->string('tipo_aporteV')->nullable();
             $table->boolean('aporte_seco')->default(false)->nullable();
-            $table->integer('cantidad_aporteS')->nullable();
+            $table->integer('cantidad_aporteSLitros')->nullable();
+            $table->integer('cantidad_aporteSKilos')->nullable();
             $table->string('tipo_aporteS')->nullable();
             $table->string('foto')->nullable();
             $table->string('observaciones')->nullable();
