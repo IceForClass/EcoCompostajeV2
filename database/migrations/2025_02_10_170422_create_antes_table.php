@@ -28,10 +28,10 @@ return new class extends Migration
                 '87.5%',
                 '100%'
             ])->nullable();
-            $table->enum('olor', ['Sin mal olor','Neutral','Podrido','Otro'])->nullable();
-            $table->boolean('insectos')->nullable();
-            $table->set('tipos_insectos',["larvas","hormigas","mosquitos","gusanos"])->nullable();
-            $table->enum('humedad', ['Deficiente','Bueno','Excesivo'])->nullable();
+            $table->enum('olor', ['sin olor','cuadra','agradable','desagradable'])->nullable();
+            $table->boolean('animales')->nullable();
+            $table->set('tipo_animal',["mosca","mosquita","raton","cucaracha","larvas","otro"])->nullable();
+            $table->enum('humedad', ['Defecto','Buena','Exceso'])->nullable();
             $table->string('foto')->nullable();
             $table->text('observaciones')->nullable(); 
             $table->timestamps();
