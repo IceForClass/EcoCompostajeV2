@@ -7,12 +7,11 @@ use App\Models\Registro;
 use App\Policies\RegistroPolicy;
 use Illuminate\Http\Request;
 use Orion\Concerns\DisableAuthorization;
-use Orion\Concerns\DisablePagination;
 use Orion\Http\Controllers\Controller as ControllersController;
 
 class RegistroController extends ControllersController
 {
-    use DisablePagination, DisableAuthorization;
+    use DisableAuthorization;
     protected $model = Registro::class; // or "App\Models\Post"
 
     protected $policy = RegistroPolicy::class;
