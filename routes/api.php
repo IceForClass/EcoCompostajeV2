@@ -57,6 +57,7 @@ Route::get("centrosPublicos",[CentrosController::class,'centrosPublicos']);
 
 Route::get("bolosUsuarios", [RegistroController::class,"boloUsuario"]);
 Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
+Route::get('users/{userId}/centros', [UserController::class, 'centros']);
 
 //Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 //Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);

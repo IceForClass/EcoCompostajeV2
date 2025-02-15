@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             "password" => bcrypt('123456789'),
+            "admin" => true
         ]);
         $user->centros()->attach(1, ['admin' => true]);
         $user->centros()->attach(3, ['admin' => true]);
