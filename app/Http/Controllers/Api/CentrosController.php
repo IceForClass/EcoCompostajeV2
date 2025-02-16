@@ -24,5 +24,12 @@ class CentrosController extends Controller
         $registros = Centro::find($id)->registros()->paginate(15);
         return response()->json($registros, 200);
     }
+
+    public function composterasConCentro($id){
+    $composteras = Compostera::where('centro_id', $id)
+        ->with('centro:id,nombre')->get();
+    return response()->json($composteras);
+}
+
     
 }
