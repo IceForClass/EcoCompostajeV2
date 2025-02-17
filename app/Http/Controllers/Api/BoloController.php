@@ -35,11 +35,20 @@ class BoloController extends Controller
 {
     $bolo = Bolo::with([
         'antes' => function ($query) {
-            $query->select('antes.id as antes_id', 'antes.registro_id', 'antes.temp_compostera');
+            $query->select(
+                'antes.id as antes_id',
+                'antes.registro_id',
+                'antes.temp_compostera',
+                'antes.created_at',
+            );
         },
         'registros' => function ($query) {
-            $query->select('registros.id as registro_id', 'registros.compostera_id')
-                ->with('compostera:id,tipo');
+            $query->select(
+                'registros.id as registro_id',
+                'registros.compostera_id',
+                'registros.created_at',
+            )
+            ->with('compostera:id,tipo');
         }
     ])->find($id);
 
@@ -51,9 +60,52 @@ class BoloController extends Controller
             'registro_id' => $antes->registro_id,
             'temp_compostera' => $antes->temp_compostera,
             'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
+            'antes_created_at' => $antes->created_at->format('Y-m-d H:i:s'),
+            'antes_updated_at' => $antes->updated_at->format('Y-m-d H:i:s'),
         ];
     });
 
     return response()->json($antesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
 }
+
+
+public function duranteBolo($id)
+{
+    $bolo = Bolo::with([
+        'durantes' => function ($query) {
+            $query->select(
+                'durantes.id as durante_id',
+                'durantes.registro_id',
+                'durantes.cantidad_aporteVLitros',
+                'durantes.cantidad_aporteSLitros',
+                'durantes.created_at',
+            );
+        },
+        'registros' => function ($query) {
+            $query->select(
+                'registros.id as registro_id',
+                'registros.compostera_id',
+                'registros.created_at',
+            )
+            ->with('compostera:id,tipo');
+        }
+    ])->find($id);
+
+    // Unimos cada 'durante' con su 'registro' y su 'compostera.tipo'
+    $durantesConRegistros = $bolo->durantes->map(function ($durante) use ($bolo) {
+        $registro = $bolo->registros->firstWhere('registro_id', $durante->registro_id);
+        return [
+            'id' => $durante->durante_id,
+            'registro_id' => $durante->registro_id,
+            'cantidad_aporteVLitros' => $durante->cantidad_aporteVLitros,
+            'cantidad_aporteSLitros' => $durante->cantidad_aporteSLitros,
+            'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
+            'durante_created_at' => $durante->created_at->format('Y-m-d H:i:s'),
+        ];
+    });
+
+    return response()->json($durantesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
+}
+
+
 }
