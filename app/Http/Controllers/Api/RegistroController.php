@@ -21,12 +21,15 @@ class RegistroController extends ControllersController
         return response()->json($registro,200);
     }
 
-    public function boloUsuario(){
+    public function boloUsuario($id)
+    {
         $datos = Registro::with([
             'ciclo.bolo:id,nombre',
             'user:id,name'
-        ])->paginate(15);
-        return response()->json($datos,200);
+        ])->whereHas('compostera', function ($query) use ($id) {
+            $query->where('centro_id', $id);
+        })->paginate(15);
+    
+        return response()->json($datos, 200);
     }
-
 }

@@ -56,7 +56,7 @@ Route::get ('durantesBolo/{id}' , [BoloController::class,'duranteBolo']);
 Route::get ('registrosBolo/{id}',[BoloController::class,'registrosBolo']);
 Route::get("centrosPublicos",[CentrosController::class,'centrosPublicos']);
 
-Route::get("bolosUsuarios", [RegistroController::class,"boloUsuario"]);
+Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuario']);
 Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
 Route::get('users/{userId}/centros', [UserController::class, 'centros']);
 Route::get('centro/{id}/composterasCentro', [CentrosController::class, 'composterasConCentro']);
