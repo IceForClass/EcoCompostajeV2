@@ -77,8 +77,8 @@ class BoloController extends Controller
             $query->select(
                 'durantes.id as durante_id',
                 'durantes.registro_id',
-                'durantes.cantidad_aporteV', // Corregido: Antes era cantidad_aporteVLitros
-                'durantes.cantidad_aporteS', // Corregido: Antes era cantidad_aporteSLitros
+                'durantes.cantidad_aporteVLitros', // Modificado: Devuelve los litros en vez de la cantidad general
+                'durantes.cantidad_aporteSLitros', // Modificado: Devuelve los litros en vez de la cantidad general
                 'durantes.created_at'
             );
         },
@@ -98,8 +98,8 @@ class BoloController extends Controller
         return [
             'id' => $durante->durante_id,
             'registro_id' => $durante->registro_id,
-            'cantidad_aporteV' => $durante->cantidad_aporteV, // Nombre corregido
-            'cantidad_aporteS' => $durante->cantidad_aporteS, // Nombre corregido
+            'cantidad_aporteVLitros' => $durante->cantidad_aporteVLitros, // Modificado: Ahora devuelve la cantidad en litros
+            'cantidad_aporteSLitros' => $durante->cantidad_aporteSLitros, // Modificado: Ahora devuelve la cantidad en litros
             'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
             'durante_created_at' => $durante->created_at->format('Y-m-d'),
         ];
@@ -107,6 +107,7 @@ class BoloController extends Controller
 
     return response()->json($durantesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
 }
+
 
     
 
