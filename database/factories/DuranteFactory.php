@@ -13,8 +13,8 @@ class DuranteFactory extends Factory
     public function definition(): array
     {
         // Definir los valores booleanos primero
-        $aporteVerde = $this->faker->boolean();
-        $aporteSeco = $this->faker->boolean();
+        $aporteVerde = $this->faker->true;
+        $aporteSeco = $this->faker->true;
 
         return [
             'registro_id' => Registro::inRandomOrder()->first()->id ?? Registro::factory(),
