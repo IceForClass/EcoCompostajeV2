@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DuranteFactory extends Factory
 {
+    //Cambios
     protected $model = Durante::class;
 
     public function definition(): array
@@ -30,6 +31,7 @@ class DuranteFactory extends Factory
             'tipo_aporteS' => $aporteSeco ? $this->faker->randomElement(['paja', 'madera', 'hojarasca']) : null,
             'foto' => $this->faker->imageUrl(),
             'observaciones' => $this->faker->sentence(),
+            'created_at' => $this->faker->dateTimeBetween('-30 days', 'now'),
         ];
     }
 }

@@ -45,7 +45,7 @@ class AntesFactory extends Factory
             'humedad' => $this->faker->randomElement(['Defecto', 'Buena', 'Exceso']),
             'foto' => $this->faker->imageUrl(),
             'observaciones' => $this->faker->sentence(),
-            'created_at' => $lastTimestamp,
+            'created_at' => $this->faker->dateTimeBetween('-30 days', 'now'),
             'updated_at' => $lastTimestamp->copy()->addMinutes(rand(0, 1440)),
         ];
     }
