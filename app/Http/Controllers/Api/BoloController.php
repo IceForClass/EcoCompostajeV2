@@ -31,8 +31,29 @@ class BoloController extends Controller
         return response()->json($registros,200);
     }
 
-    public function antesBolo($id){
-        $registros = Bolo::find($id)->antes;
-        return response()->json($registros, 200);
-    }
+    public function antesBolo($id)
+{
+    $bolo = Bolo::with([
+        'antes' => function ($query) {
+            $query->select('antes.id as antes_id', 'antes.registro_id', 'antes.temp_compostera');
+        },
+        'registros' => function ($query) {
+            $query->select('registros.id as registro_id', 'registros.compostera_id')
+                ->with('compostera:id,tipo');
+        }
+    ])->find($id);
+
+    // Unimos cada 'antes' con su 'registro' y su 'compostera.tipo'
+    $antesConRegistros = $bolo->antes->map(function ($antes) use ($bolo) {
+        $registro = $bolo->registros->firstWhere('registro_id', $antes->registro_id);
+        return [
+            'id' => $antes->antes_id,
+            'registro_id' => $antes->registro_id,
+            'temp_compostera' => $antes->temp_compostera,
+            'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
+        ];
+    });
+
+    return response()->json($antesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
+}
 }

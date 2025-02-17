@@ -26,7 +26,7 @@ class Registro extends Model
 }
 
     public function compostera(){
-        return $this->belongsTo(Compostera::class);
+        return $this->belongsTo(Compostera::class,'compostera_id');
     }
 
     public function antes(){
