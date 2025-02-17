@@ -60,7 +60,7 @@ class BoloController extends Controller
                 'registro_id' => $antes->registro_id,
                 'temp_compostera' => $antes->temp_compostera,
                 'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
-                'antes_created_at' => $antes->created_at->format('Y-m-d H:i:s'),
+                'antes_created_at' => $antes->created_at->format('Y-m-d'),
                 // Eliminamos 'antes_updated_at' porque updated_at no está en la consulta
             ];
         });
@@ -101,7 +101,7 @@ class BoloController extends Controller
             'cantidad_aporteV' => $durante->cantidad_aporteV, // Nombre corregido
             'cantidad_aporteS' => $durante->cantidad_aporteS, // Nombre corregido
             'compostera_tipo' => $registro && $registro->compostera ? $registro->compostera->tipo : "No asignado",
-            'durante_created_at' => $durante->created_at->format('Y-m-d H:i:s'),
+            'durante_created_at' => $durante->created_at->format('Y-m-d'),
         ];
     });
 
