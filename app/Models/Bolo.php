@@ -35,6 +35,10 @@ public function antes()
     return $this->hasManyThrough(Antes::class, Registro::class, 'ciclo_id', 'registro_id');
 }
 
+public function durantes()
+{
+    return $this->hasManyThrough(Durante::class, Registro::class, 'ciclo_id', 'registro_id');
+}
 
 
 }

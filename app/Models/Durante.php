@@ -10,7 +10,7 @@ class Durante extends Model
     /** @use HasFactory<\Database\Factories\DuranteFactory> */
     use HasFactory;
 
-    protected $fillable = ['registro_id', 'riego', 'remover', 'aporte_verde', 'cantidad_aporteV', 'tipo_aporteV', 'aporte_seco', 'cantidad_aporteS', 'tipo_aporteS', 'foto', 'observaciones'];
+    protected $fillable = ['registro_id', 'riego', 'remover', 'aporte_verde', 'cantidad_aporteVLitros', 'cantidad_aporteVKilos','tipo_aporteV', 'aporte_seco', 'cantidad_aporteSLitros', 'cantidad_aporteSKilos','tipo_aporteS', 'foto', 'observaciones'];
 
     public function registro(){
         return $this->belongsTo(Registro::class,'registro_id');
