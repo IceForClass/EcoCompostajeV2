@@ -52,6 +52,7 @@ Route::group(['as' => 'api.'], function() {
 });
 
 Route::get ('antesBolo/{id}' , [BoloController::class,'antesBolo']);
+Route::get ('durantesBolo/{id}' , [BoloController::class,'duranteBolo']);
 Route::get ('registrosBolo/{id}',[BoloController::class,'registrosBolo']);
 Route::get("centrosPublicos",[CentrosController::class,'centrosPublicos']);
 
