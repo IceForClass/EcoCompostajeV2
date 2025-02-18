@@ -17,27 +17,18 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ComposterasController;
 use App\Http\Controllers\Api\UserCentroController;
 use App\Http\Controllers\Api\RegistroController;
+use Illuminate\Support\Facades\Route;
+use Orion\Facades\Orion;
 use App\Http\Controllers\Api\CentrosController;
 use App\Http\Controllers\Api\DespuesController;
 use App\Http\Controllers\Api\DurantesController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
-use Orion\Facades\Orion;
 
 
-// Ruta protegida con Sanctum para obtener el usuario autenticado
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
-Route::post('/login', action: [AuthenticatedSessionController::class, 'store']);
-
-
-// Rutas API organizadas en un grupo
 Route::group(['as' => 'api.'], function() {
     Orion::resource('centros', CentrosController::class);
     Orion::resource('composteras', ComposterasController::class);
@@ -48,7 +39,6 @@ Route::group(['as' => 'api.'], function() {
     Orion::resource('durantes', DurantesController::class);
     Orion::resource('despues', DespuesController::class);
     Orion::resource('users', UserController::class);
-
     Orion::hasManyResource('users', 'registros', UserRegistrosController::class);
     Orion::hasManyResource('registros', 'antes', RegistroAntesController::class);
     Orion::hasManyResource('registros', 'durantes', RegistroDurantesController::class);
@@ -56,23 +46,22 @@ Route::group(['as' => 'api.'], function() {
     Orion::hasManyResource('bolos', 'ciclos', BoloCiclosController::class);
     Orion::hasManyResource('composteras', 'registros', ComposteraRegistrosController::class);
     Orion::hasManyResource('centros', 'composteras', CentroComposterasController::class);
-
-    Orion::belongsToResource('ciclos', 'bolos', CicloBoloController::class);
-    Orion::hasManyResource('ciclo', 'registros', CicloRegistrosController::class);
-    Orion::belongsToResource('user', 'centro', UserCentroController::class);
+    Orion::belongsToResource('ciclos','bolos',CicloBoloController::class);
+    Orion::hasManyResource('ciclo','registros',CicloRegistrosController::class);
+    Orion::belongsToResource('user','centro',UserCentroController::class);
 });
 
-Route::get('antesBolo/{id}', [BoloController::class, 'antesBolo']);
-Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
-Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
-Route::get('centrosPublicos', [CentrosController::class, 'centrosPublicos']);
+Route::get ('antesBolo/{id}' , [BoloController::class,'antesBolo']);
+Route::get ('durantesBolo/{id}' , [BoloController::class,'duranteBolo']);
+Route::get ('registrosBolo/{id}',[BoloController::class,'registrosBolo']);
+Route::get("centrosPublicos",[CentrosController::class,'centrosPublicos']);
 
 Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuario']);
 Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
 Route::get('users/{userId}/centros', [UserController::class, 'centros']);
 Route::get('centro/{id}/composterasCentro', [CentrosController::class, 'composterasConCentro']);
 
-// Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
-// Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
-// Route::get('exactbolo/composter3', [BoloController::class, 'bolocomposter3']);
-// Route::get('exactregist/lastRegist', [RegistroController::class, 'lastRegist']);
+//Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
+//Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
+//Route::get('exactbolo/composter3', [BoloController::class, 'bolocomposter3']);
+//Route::get('exactregist/lastRegist', [RegistroController::class, 'lastRegist']);
