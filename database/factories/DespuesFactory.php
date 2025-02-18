@@ -25,6 +25,7 @@ class DespuesFactory extends Factory
             ]),
             'foto' => $this->faker->imageUrl(),
             'observaciones' => $this->faker->sentence(),
+            'created_at' => $this->faker->dateTimeBetween('-30 days', 'now'),
         ];
     }
 }
