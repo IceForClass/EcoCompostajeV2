@@ -62,17 +62,19 @@ Route::group(['as' => 'api.'], function() {
     Orion::belongsToResource('user', 'centro', UserCentroController::class);
 });
 
+Route::get('users/{userId}/centros', [UserController::class, 'centros']);
+
+Route::get('centrosPublicos', [CentrosController::class, 'centrosPublicos']);
+Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
+Route::get('centro/{id}/composterasCentro', [CentrosController::class, 'composterasConCentro']);
+
+Route::get('ultimoRegistro', [RegistroController::class, 'lastRegist']);
+Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuario']);
+
 Route::get('antesBolo/{id}', [BoloController::class, 'antesBolo']);
 Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
 Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
-Route::get('centrosPublicos', [CentrosController::class, 'centrosPublicos']);
-
-Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuario']);
-Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
-Route::get('users/{userId}/centros', [UserController::class, 'centros']);
-Route::get('centro/{id}/composterasCentro', [CentrosController::class, 'composterasConCentro']);
 
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
 // Route::get('exactbolo/composter3', [BoloController::class, 'bolocomposter3']);
-Route::get('ultimoRegistro', [RegistroController::class, 'lastRegist']);
