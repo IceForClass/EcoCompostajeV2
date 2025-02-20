@@ -19,6 +19,7 @@ class CicloFactory extends Factory
         return [
             'bolo_id' => \App\Models\Bolo::pluck('id')->random(),
             'final' => $this->faker->dateTimeThisYear,
+            'compostera_id' => \App\Models\Compostera::pluck('id')->random()
         ];
     }
 }
