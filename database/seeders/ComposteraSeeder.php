@@ -20,7 +20,7 @@ class ComposteraSeeder extends Seeder
                 Compostera::create([
                     'centro_id' => $centro->id,
                     'tipo' => $tipo,
-                    'ocupada' => true,
+                    'ocupada' => false,
                 ]);
             }
         });
