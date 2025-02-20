@@ -75,4 +75,4 @@ Route::get('centro/{id}/composterasCentro', [CentrosController::class, 'composte
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
 // Route::get('exactbolo/composter3', [BoloController::class, 'bolocomposter3']);
-// Route::get('exactregist/lastRegist', [RegistroController::class, 'lastRegist']);
+Route::get('ultimoRegistro', [RegistroController::class, 'lastRegist']);
