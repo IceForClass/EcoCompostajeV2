@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreign("bolo_id")->references("id")->on("bolos")->onDelete("cascade");
             $table->date("final")->nullable();
             $table->boolean("terminado")->default(0);
+            $table->bigInteger("compostera_id")->unsigned()->index();
+            $table->foreign("compostera_id")->references("id")->on("composteras")->onDelete("cascade");
         });
     }
 
