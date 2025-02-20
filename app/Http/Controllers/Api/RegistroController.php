@@ -32,4 +32,9 @@ class RegistroController extends ControllersController
     
         return response()->json($datos, 200);
     }
+
+    public function ultimoRegistro(){
+        $registro = Registro::latest('id')->first();
+        return response()->json($registro,200);
+    }
 }
