@@ -8,7 +8,7 @@ use Orion\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    use DisableAuthorization;
+    // use DisableAuthorization;
     protected $model = User::class; // or "App\Models\Post"
     
     public function centros($userId)
