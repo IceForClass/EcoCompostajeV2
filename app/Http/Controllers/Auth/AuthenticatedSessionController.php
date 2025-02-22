@@ -11,21 +11,26 @@ use Illuminate\Http\Request;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): JsonResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return response()->noContent();
+        return response()->json([
+            'user' => Auth::user(), // Devuelve el usuario autenticado
+            'message' => 'Login exitoso'
+        ]);
     }
 
-    public function destroy(Request $request): Response
+    public function destroy(Request $request): JsonResponse
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Logout exitoso'
+        ])->withCookie(cookie()->forget('ecocompostaje_session')) // Elimina la cookie de sesión
+          ->withCookie(cookie()->forget('XSRF-TOKEN')); // Elimina la cookie CSRF si es necesario
     }
 }
