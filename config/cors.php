@@ -19,13 +19,13 @@ return [
 
     'allowed_methods' => ['GET', "POST", "PATCH", "PUT", "DELETE"],
 
-    // 'allowed_origins' => ['*'],
+    'allowed_origins' => ['*'],
     
-    // 'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [],
 
-    'allowed_origins' => ['https://navet21.github.io'],
+    //     'allowed_origins' => ['https://navet21.github.io'],
 
-    'allowed_origins_patterns' => ['/^https:\/\/navet21\.github\.io\/frontcompostaje/'],
+    // 'allowed_origins_patterns' => ['/^https:\/\/navet21\.github\.io\/frontcompostaje/'],
 
     'allowed_headers' => ['*'],
 
