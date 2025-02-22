@@ -27,7 +27,15 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use Orion\Facades\Orion;
 
 
+// Ruta protegida con Sanctum para obtener el usuario autenticado
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+    return $request->user();
+});
 
+
+Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
+
+Route::post('/login', action: [AuthenticatedSessionController::class, 'store']);
 
 
 // Rutas API organizadas en un grupo
