@@ -20,4 +20,8 @@ class Compostera extends Model
     {
         return $this->hasMany(Registro::class, 'compostera_id', 'id');
     }
+    
+    public function ciclos(){
+        return $this->hasMany(Ciclo::class, 'compostera_id' , 'id');
+    }
 }

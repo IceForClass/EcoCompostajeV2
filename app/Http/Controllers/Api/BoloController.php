@@ -12,6 +12,12 @@ class BoloController extends Controller
 
     protected $model = Bolo::class; // or "App\Models\Post"
 
+
+    public function ultimobolo(){
+        $bolo = Bolo::latest('id')->first();
+        return response()->json($bolo,200);
+    }
+
     public function bolocomposter1(){
         $bolo = Bolo::where('cicle1',true)->where('cicle2',false)->where('cicle3',false)->where('finish',false)->first();
         return response()->json($bolo,200);
