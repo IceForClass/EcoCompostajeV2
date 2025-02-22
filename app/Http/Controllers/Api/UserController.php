@@ -14,7 +14,7 @@ class UserController extends Controller
     public function centros($userId)
     {
         $user = User::find($userId);
-        return response()->json($user->centros);
+        return response()->json($user->centro);
     }
 
 }
