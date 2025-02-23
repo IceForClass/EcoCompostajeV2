@@ -10,4 +10,6 @@
 
     sudo service php8.3-fpm reload
 
+    npm run build
+
     echo "Deploy terminado"
