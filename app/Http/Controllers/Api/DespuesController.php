@@ -23,7 +23,7 @@ class DespuesController extends Controller
     public function store(OrionRequest $request)
     {
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('despuesimage', 'public');
+            $path = $request->file('foto')->store('despuesimages', 'public');
             // Actualizas la información del request con la ruta
             $request->merge(['foto' => $path]);
         }
