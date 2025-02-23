@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'],
     
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ["*"],
 
     //     'allowed_origins' => ['https://navet21.github.io'],
 
@@ -29,7 +29,7 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers' => ["*"],
 
     'max_age' => 0,
 
