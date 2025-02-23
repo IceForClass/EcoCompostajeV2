@@ -22,10 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
             StartSession::class,
         ]);
 
-        // // Habilitar CORS y CSRF
-        // $middleware->validateCsrfTokens(except: [
-        //     'https://navet21.github.io/frontcompostaje', // Cambia por tu dominio de GitHub Pages
-        // ]);
+        // Habilitar CORS y CSRF
+        $middleware->validateCsrfTokens(except: [
+            'https://navet21.github.io/frontcompostaje', // Cambia por tu dominio de GitHub Pages
+        ]);
         $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
 
         $middleware->alias([
