@@ -17,22 +17,19 @@ class AntesController extends Controller
     //protected $request = AntesRequest::class;
     
     public function store(OrionRequest $request)
-{
-    if ($request->hasFile('foto')) {
-        // Guarda la imagen en la carpeta storage/app/public y obtiene el path relativo
-        $path = $request->file('foto')->store('antesimages', 'public');
+    {
+        if ($request->hasFile('foto')) {
+            // Guarda la imagen correctamente en storage/app/public/imagenes
+            $path = $request->file('foto')->store('imagenes', 'public');
 
-        // Clonar el request y modificar el path de la imagen antes de enviarlo a Orion
-        $modifiedRequest = new OrionRequest(array_merge($request->all(), ['foto' => $path]));
+            // Crea el registro manualmente y lo guarda en la base de datos
+            $registro = Antes::create(array_merge($request->except('foto'), ['foto' => $path]));
 
-        // Llamar a la implementación de Orion con el request modificado
-        return parent::store($modifiedRequest);
+            return response()->json($registro, 201);
+        }
+
+        // Si no hay foto, usa el método de Orion normal
+        return parent::store($request);
     }
-
-    // Si no hay foto, usa el request normal
-    return parent::store($request);
 }
-
     
-
-}
