@@ -19,8 +19,8 @@ class AntesController extends Controller
     public function store(OrionRequest $request)
     {
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('antesimages', 'public');
-            dd($path);
+            $path = $request->file('foto')->store('', 'public');
+            // dd($path);
             // Actualizas la información del request con la ruta
             $request->merge(['foto' => $path]);
         }

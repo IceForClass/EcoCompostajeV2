@@ -8,13 +8,13 @@ use Orion\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    // use DisableAuthorization;
+    use DisableAuthorization;
     protected $model = User::class; // or "App\Models\Post"
     
     public function centros($userId)
     {
         $user = User::find($userId);
-        return response()->json($user->centro);
+        return response()->json($user->centros);
     }
 
 }
