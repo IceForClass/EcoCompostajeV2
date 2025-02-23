@@ -19,13 +19,13 @@ class DurantesController extends Controller
     public function store(OrionRequest $request)
     {
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('duranteimages', 'public');
+            $path = $request->file('foto')->store('imagenes', 'public');
             // Actualizas la información del request con la ruta
-            $request->merge(['foto' => $path]);
-        }
+            $registro = Durante::create(array_merge($request->except('foto'), ['foto' => $path]));
 
+            return response()->json($registro, 201);
+        }
         // Llamas a la implementación de Orion para crear el registro
         return parent::store($request);
-    } 
-
+    }
 }
