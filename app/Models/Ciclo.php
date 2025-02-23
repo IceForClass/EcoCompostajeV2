@@ -10,7 +10,8 @@ class Ciclo extends Model
     /** @use HasFactory<\Database\Factories\CicloFactory> */
     use HasFactory;
 
-    protected $fillable = ['bolo_id', 'final', 'terminado'];
+    protected $fillable = ['bolo_id', 'compostera_id', 'final', 'terminado'];
+
 
     public function registros(){
         return $this->hasMany(Registro::class);

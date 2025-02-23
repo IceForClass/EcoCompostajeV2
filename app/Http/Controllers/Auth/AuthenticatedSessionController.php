@@ -37,7 +37,6 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request): Response
     {
-        // Aquí puedes también revocar el token o simplemente cerrar sesión
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

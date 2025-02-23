@@ -11,7 +11,7 @@ class Antes extends Model
     /** @use HasFactory<\Database\Factories\AntesFactory> */
     use HasFactory;
 
-    protected $fillable = ['registro_id', 'temp_ambiente', 'temp_compostera', 'nivel_llenado', 'olor', 'animales', 'tipo_animal', 'humedad', 'foto', 'observaciones'];
+    protected $fillable = ['registro_id', 'temp_ambiente', 'temp_compostera', 'humedad', 'nivel_llenado', 'olor', 'animales', 'tipo_animal', 'foto', 'observaciones'];
 
     public function registro(){
         return $this->belongsTo(Registro::class,'registro_id');

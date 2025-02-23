@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("nombre");
-            $table->string("descripcion");
-            $table->enum("ciclos", ["ciclo1", "ciclo2", "ciclo3", "terminado"])->default('ciclo1');
-
+            $table->string("descripcion")->nullable();
+            $table->boolean("terminado")->default(0);
+            $table->date("final")->nullable();
         });
     }
 
