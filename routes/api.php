@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\Api\CicloComposteraController;
+use App\Http\Controllers\Api\ComposteraCiclosController;
 use App\Http\Controllers\Api\AntesController;
 use App\Http\Controllers\Api\CentroComposterasController;
 use App\Http\Controllers\Api\CicloBoloController;
@@ -56,7 +57,10 @@ Route::group(['as' => 'api.'], function() {
     Orion::hasManyResource('registros', 'despues', RegistroDespuesController::class);
     Orion::hasManyResource('bolos', 'ciclos', BoloCiclosController::class);
     Orion::hasManyResource('composteras', 'registros', ComposteraRegistrosController::class);
+    Orion::belongsToResource('ciclo','composteras',CicloComposteraController::class);
+    Orion::hasManyResource('compostera','ciclos',ComposteraCiclosController::class);
     Orion::hasManyResource('centros', 'composteras', CentroComposterasController::class);
+
 
     Orion::belongsToResource('ciclos', 'bolos', CicloBoloController::class);
     Orion::hasManyResource('ciclo', 'registros', CicloRegistrosController::class);
@@ -64,6 +68,7 @@ Route::group(['as' => 'api.'], function() {
 });
 
 Route::get('users/{userId}/centros', [UserController::class, 'centros']);
+Route::get('ultimoBolo' , [BoloController::class, 'ultimobolo']);
 
 Route::get('centrosPublicos', [CentrosController::class, 'centrosPublicos']);
 Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
@@ -75,6 +80,8 @@ Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuari
 Route::get('antesBolo/{id}', [BoloController::class, 'antesBolo']);
 Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
 Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
+//Obtener ultimo ciclo del bolo que corresponda
+Route::get('ultimoCiclo/{compostera_id}', [ComposteraCiclosController::class, 'ultimoCiclo']);
 
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);

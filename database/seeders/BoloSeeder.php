@@ -13,37 +13,14 @@ class BoloSeeder extends Seeder
      */
     public function run(): void
     {
-        Bolo::create([
-            'nombre' => 'Bolo A',
-            'descripcion' => 'Descripción del Bolo A',
-            'ciclos' => 'ciclo1',
-        ]);
 
-        Bolo::create([
-            'nombre' => 'Bolo B',
-            'descripcion' => 'Descripción del Bolo B',
-            'ciclos' => 'ciclo2',
-        ]);
-
-        Bolo::create([
-            'nombre' => 'Bolo C',
-            'descripcion' => 'Descripción del Bolo C',
-            'ciclos' => 'ciclo3',
-        ]);
-
-        Bolo::create([
-            'nombre' => 'Bolo D',
-            'descripcion' => 'Descripción del Bolo D',
-            'ciclos' => 'terminado',
-        ]);
 
         $bolos = [];
 
-        foreach (range('E', 'Z') as $letter) {
+        foreach (range('A', 'Z') as $letter) {
             $bolos[] = [
                 'nombre' => "Bolo $letter",
                 'descripcion' => "Descripción del Bolo $letter",
-                'ciclos' => "terminado", // Todos los bolos en estado "terminado"
             ];
         }
 

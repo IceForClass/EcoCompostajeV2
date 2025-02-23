@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('registro_id')->unsigned()->index();
             $table->foreign('registro_id')->references('id')->on('registros');
-            $table->float('temp_ambiente', 3, 1)->nullable();
-            $table->float('temp_compostera', 3, 1)->nullable();
+            $table->integer('temp_ambiente')->nullable();
+            $table->integer('temp_compostera')->nullable();
             $table->enum('nivel_llenado', [
                 '0%',
                 '12.5%',
