@@ -20,7 +20,7 @@ class AntesController extends Controller
     {
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('antesimages', 'public');
-            dd($path);
+            // dd($path);
             // Actualizas la información del request con la ruta
             $request->merge(['foto' => $path]);
         }
