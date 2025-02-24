@@ -71,13 +71,33 @@ class BoloController extends Controller
 public function duranteBolo($id)
 {
     $bolo = Bolo::with([
-        'ciclos.registros' => function ($query) {
-            $query->with('durante');  // Aquí usamos "durante" en singular
-        }
+        'ciclos.registros.durante',
+        'ciclos.registros.compostera:id,tipo'
     ])->find($id);
 
-    dd($bolo->ciclos->first()->registros->first()->durante ?? 'No hay durantes');
+    if (!$bolo) {
+        return response()->json(['error' => 'Bolo no encontrado'], 404);
+    }
+
+    // Mapear los datos correctamente
+    $durantesConRegistros = $bolo->ciclos->flatMap(function ($ciclo) {
+        return $ciclo->registros->flatMap(function ($registro) {
+            return $registro->durante->map(function ($durante) use ($registro) {
+                return [
+                    'id' => $durante->id,
+                    'registro_id' => $durante->registro_id,
+                    'cantidad_aporteVLitros' => $durante->cantidad_aporteVLitros,
+                    'cantidad_aporteSLitros' => $durante->cantidad_aporteSLitros,
+                    'compostera_tipo' => $registro->compostera ? $registro->compostera->tipo : "No asignado",
+                    'durante_created_at' => $durante->created_at->format('Y-m-d'),
+                ];
+            });
+        });
+    });
+
+    return response()->json($durantesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
 }
+
 
 
 }
