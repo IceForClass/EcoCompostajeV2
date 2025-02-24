@@ -40,18 +40,30 @@ class BoloController extends Controller
     public function antesBolo($id)
 {
     $bolo = Bolo::with([
-        'antes' => function ($query) {
-            $query->select(
-                'antes.id as antes_id',
-                'antes.registro_id',
-                'antes.temp_compostera',
-                'antes.created_at'
-            );
-        }
+        'ciclos.registros.antes'
     ])->find($id);
 
-    dd($bolo->antes);
+    if (!$bolo) {
+        return response()->json(['error' => 'Bolo no encontrado'], 404);
+    }
+
+    // Mapear los datos para devolverlos en el formato deseado
+    $antesConRegistros = $bolo->ciclos->flatMap(function ($ciclo) {
+        return $ciclo->registros->flatMap(function ($registro) {
+            return $registro->antes->map(function ($antes) use ($registro) {
+                return [
+                    'id' => $antes->id,
+                    'registro_id' => $antes->registro_id,
+                    'temp_compostera' => $antes->temp_compostera,
+                    'antes_created_at' => $antes->created_at->format('Y-m-d'),
+                ];
+            });
+        });
+    });
+
+    return response()->json($antesConRegistros, 200, [], JSON_UNESCAPED_UNICODE);
 }
+
 
     
 
