@@ -74,6 +74,7 @@ Route::get('antesBolo/{id}', [BoloController::class, 'antesBolo']);
 Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
 Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
 Route::get('ultimoCiclo/{compostera_id}', [ComposteraCiclosController::class, 'ultimoCiclo']);
+Route::get('ultimoBolo' , [BoloController::class, 'ultimobolo']);
 
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
