@@ -72,11 +72,12 @@ public function duranteBolo($id)
 {
     $bolo = Bolo::with([
         'ciclos.registros' => function ($query) {
-            $query->with('durante');  // Forzamos la carga de la relación
+            $query->with('durante');  // Aquí usamos "durante" en singular
         }
     ])->find($id);
 
-    dd($bolo->ciclos->first()->registros->first()->durantes ?? 'No hay durantes');
+    dd($bolo->ciclos->first()->registros->first()->durante ?? 'No hay durantes');
 }
+
 
 }
