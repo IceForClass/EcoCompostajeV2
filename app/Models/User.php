@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\Registro::class, 'user_id', 'id');
     }
 
-    public function centro()
+    public function centros()
     {
         return $this->belongsToMany(Centro::class);
     }
