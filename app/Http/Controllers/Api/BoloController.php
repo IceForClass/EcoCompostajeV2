@@ -74,8 +74,9 @@ public function duranteBolo($id)
         'ciclos.registros.durante'
     ])->find($id);
 
-    dd($bolo->ciclos->first()->registros ?? 'No hay registros');
+    dd($bolo->ciclos->first()->registros->first()->durantes ?? 'No hay durantes');
 }
+
 
 
 
