@@ -47,19 +47,10 @@ class BoloController extends Controller
                 'antes.temp_compostera',
                 'antes.created_at'
             );
-        },
-        'registros' => function ($query) {
-            $query->select(
-                'registros.id as registro_id',
-                'registros.compostera_id',
-                'registros.created_at'
-            )
-            ->with('compostera:id,tipo');
         }
     ])->find($id);
 
-    // 🔴 DETENEMOS LA EJECUCIÓN AQUÍ PARA VER LOS DATOS
-    dd($bolo->registros);
+    dd($bolo->antes);
 }
 
     
