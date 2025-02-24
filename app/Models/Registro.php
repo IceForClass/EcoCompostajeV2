@@ -34,7 +34,7 @@ class Registro extends Model
     }
 
     public function durante(){
-        return $this->hasMany(Durante::class);
+        return $this->hasMany(Durante::class, 'registro_id', 'id');
     }
 
     public function despues(){
