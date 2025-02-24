@@ -32,7 +32,14 @@ class Bolo extends Model
 
 public function antes()
 {
-    return $this->hasManyThrough(Antes::class, Registro::class, 'ciclo_id', 'registro_id');
+    return $this->hasManyThrough(
+        Antes::class,   // Modelo final (Antes)
+        Registro::class, // Modelo intermedio (Registros)
+        'ciclo_id',      // Clave foránea en registros que apunta a ciclos
+        'registro_id',   // Clave foránea en antes que apunta a registros
+        'id',            // Clave primaria en bolos
+        'id'             // Clave primaria en ciclos
+    );
 }
 
 public function durantes()
