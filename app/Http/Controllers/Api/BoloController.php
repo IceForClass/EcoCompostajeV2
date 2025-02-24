@@ -72,7 +72,7 @@ public function duranteBolo($id)
 {
     $bolo = Bolo::with([
         'ciclos.registros' => function ($query) {
-            $query->with('durantes');  // Forzamos la carga de la relación
+            $query->with('durante');  // Forzamos la carga de la relación
         }
     ])->find($id);
 
