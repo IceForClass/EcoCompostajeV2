@@ -71,7 +71,7 @@ class BoloController extends Controller
 public function duranteBolo($id)
 {
     $bolo = Bolo::with([
-        'ciclos.registros.durantes'
+        'ciclos.registros.durante'
     ])->find($id);
 
     dd($bolo->ciclos);
