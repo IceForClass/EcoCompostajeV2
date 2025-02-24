@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Api\ComposteraCiclosController;
 use App\Http\Controllers\Api\AntesController;
 use App\Http\Controllers\Api\CentroComposterasController;
 use App\Http\Controllers\Api\CicloBoloController;
@@ -73,6 +73,7 @@ Route::get('centros/{id}/bolosUsuarios', [RegistroController::class, 'boloUsuari
 Route::get('antesBolo/{id}', [BoloController::class, 'antesBolo']);
 Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
 Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
+Route::get('ultimoCiclo/{compostera_id}', [ComposteraCiclosController::class, 'ultimoCiclo']);
 
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
