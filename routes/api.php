@@ -65,7 +65,6 @@ Route::group(['as' => 'api.'], function() {
 
     Orion::belongsToResource('ciclos', 'bolos', CicloBoloController::class);
     Orion::hasManyResource('ciclo', 'registros', CicloRegistrosController::class);
-    Orion::belongsToResource('user', 'centro', UserCentroController::class);
 });
 
 Route::get('users/{userId}/centros', [UserController::class, 'centros']);
