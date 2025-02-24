@@ -40,7 +40,8 @@ class BoloController extends Controller
     public function antesBolo($id)
 {
     $bolo = Bolo::with([
-        'ciclos.registros.antes'
+        'ciclos.registros.antes',
+        'ciclos.registros.compostera:id,tipo'
     ])->find($id);
 
     if (!$bolo) {
