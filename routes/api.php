@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\CentrosController;
 use App\Http\Controllers\Api\DespuesController;
 use App\Http\Controllers\Api\DurantesController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
@@ -40,6 +41,7 @@ Route::post('/login', action: [AuthenticatedSessionController::class, 'store']);
 
 // Rutas API organizadas en un grupo
 Route::group(['as' => 'api.'], function() {
+    Orion::resource("users", UserController::class);
     Orion::resource('centros', CentrosController::class);
     Orion::resource('composteras', ComposterasController::class);
     Orion::resource('bolos', BoloController::class);
