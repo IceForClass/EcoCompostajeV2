@@ -71,16 +71,12 @@ class BoloController extends Controller
 public function duranteBolo($id)
 {
     $bolo = Bolo::with([
-        'ciclos.registros.durante'
+        'ciclos.registros' => function ($query) {
+            $query->with('durantes');  // Forzamos la carga de la relación
+        }
     ])->find($id);
 
     dd($bolo->ciclos->first()->registros->first()->durantes ?? 'No hay durantes');
 }
-
-
-
-
-
-    
 
 }
