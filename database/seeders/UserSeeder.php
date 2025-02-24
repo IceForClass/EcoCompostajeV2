@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             "password" => bcrypt('123456789'),
             "admin" => true
         ]);
-        $user->centros()->attach(1, ['admin' => true]);
-        $user->centros()->attach(3, ['admin' => true]);
+        $user->centro()->attach(1, ['admin' => true]);
+        $user->centro()->attach(3, ['admin' => true]);
     }
 }
