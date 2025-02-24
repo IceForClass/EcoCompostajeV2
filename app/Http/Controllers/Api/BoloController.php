@@ -56,6 +56,7 @@ class BoloController extends Controller
                     'id' => $antes->id,
                     'registro_id' => $antes->registro_id,
                     'temp_compostera' => $antes->temp_compostera,
+                    'compostera_tipo' => $registro->compostera ? $registro->compostera->tipo : "No asignado",
                     'antes_created_at' => $antes->created_at->format('Y-m-d'),
                 ];
             });
