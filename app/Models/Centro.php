@@ -16,9 +16,9 @@ class Centro extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class, 'centro_user');
     }
-
+    
     public function registros()
     {
         return $this->hasManyThrough(

@@ -62,6 +62,7 @@ Route::group(['as' => 'api.'], function() {
 });
 
 Route::get('users/{userId}/centros', [UserController::class, 'centros']);
+Route::get('centros/{centroId}/users', [CentrosController::class, 'users']);
 
 Route::get('centrosPublicos', [CentrosController::class, 'centrosPublicos']);
 Route::get('centros/{id}/registros', [CentrosController::class, 'registros']);
