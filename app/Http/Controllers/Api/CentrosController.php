@@ -31,5 +31,11 @@ class CentrosController extends Controller
     return response()->json($composteras);
 }
 
+    public function users($centroId)
+    {
+        $centros = Centro::find($centroId);
+        return response()->json($centros->users);
+    }
+
     
 }
