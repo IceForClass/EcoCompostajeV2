@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function centros()
     {
-        return $this->belongsToMany(Centro::class);
+        return $this->belongsToMany(Centro::class, 'centro_user');
     }
 }
