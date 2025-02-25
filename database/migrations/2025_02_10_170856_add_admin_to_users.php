@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('centro_id')->unsigned()->index();
-            $table->foreign('centro_id')->references('id')->on('centros');
             $table->boolean('admin')->default(false);
         });
     }
