@@ -51,14 +51,17 @@ class RealistaSeeder extends Seeder
             Compostera::factory()->create([
                 'centro_id' => $centro->id,
                 'tipo'      => 'aporte',
+                'ocupada'   => false,
             ]);
             Compostera::factory()->create([
                 'centro_id' => $centro->id,
                 'tipo'      => 'degradacion',
+                'ocupada'   => false,
             ]);
             Compostera::factory()->create([
                 'centro_id' => $centro->id,
                 'tipo'      => 'maduracion',
+                'ocupada'   => false,
             ]);
         }
 
