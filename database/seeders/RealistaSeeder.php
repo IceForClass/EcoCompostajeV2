@@ -45,7 +45,7 @@ class RealistaSeeder extends Seeder
             Centro::factory()->create($cd);
         }
 
-        // 2) Para cada centro, creamos 3 ComposterAs (aporte, degradacion, maduracion)
+        // 2) A cada centro, crear 3 ComposterAs (aporte, degradación, maduración)
         $centros = Centro::all();
         foreach ($centros as $centro) {
             Compostera::factory()->create([
@@ -62,18 +62,21 @@ class RealistaSeeder extends Seeder
             ]);
         }
 
-        // 3) Creamos SOLO 10 bolos en total
+        // 3) Creamos SOLO 10 bolos en total (no 5 por cada centro)
         $bolos = Bolo::factory(10)->create();
 
-        // 4) Para cada bolo, elegimos un centro random y sus 3 composteras
+        // 4) Para cada bolo, elegimos un centro aleatorio y creamos 3 ciclos
         foreach ($bolos as $bolo) {
-            $centro = $centros->random(); // selecciona uno de los 4
+            // Selecciona un centro al azar
+            $centro = $centros->random();
+
+            // Obtenemos sus 3 composteras
             $compAporte      = $centro->composteras->where('tipo', 'aporte')->first();
             $compDegradacion = $centro->composteras->where('tipo', 'degradacion')->first();
             $compMaduracion  = $centro->composteras->where('tipo', 'maduracion')->first();
 
-            // Fechas simuladas (para que en los gráficos se vean en orden)
-            $startAporte = Carbon::now()->subDays(rand(40, 60)); // hace ~40-60 días
+            // Fechas simuladas para los ciclos
+            $startAporte = Carbon::now()->subDays(rand(40, 60)); // hace 40-60 días
             $endAporte   = $startAporte->copy()->addDays(rand(5, 10));
 
             $startDegradacion = $endAporte->copy();
@@ -82,24 +85,26 @@ class RealistaSeeder extends Seeder
             $startMaduracion  = $endDegradacion->copy();
             $endMaduracion    = $startMaduracion->copy()->addDays(rand(1, 5));
 
-            // Creamos 3 ciclos (aporte, degrad, maduración)
+            // Ciclo aporte
             $cicloAporte = Ciclo::factory()->create([
                 'bolo_id'       => $bolo->id,
                 'compostera_id' => $compAporte->id,
                 'final'         => $endAporte,
             ]);
+            // Ciclo degradación
             $cicloDegradacion = Ciclo::factory()->create([
                 'bolo_id'       => $bolo->id,
                 'compostera_id' => $compDegradacion->id,
                 'final'         => $endDegradacion,
             ]);
+            // Ciclo maduración
             $cicloMaduracion = Ciclo::factory()->create([
                 'bolo_id'       => $bolo->id,
                 'compostera_id' => $compMaduracion->id,
                 'final'         => $endMaduracion,
             ]);
 
-            // 5) Cada ciclo → 10 registros. Cada registro → 3 fases (antes/durante/después)
+            // 5) Cada Ciclo → 10 registros, con fechas cada 3 días
             $this->crearRegistrosParaCiclo($cicloAporte, $startAporte, $endAporte);
             $this->crearRegistrosParaCiclo($cicloDegradacion, $startDegradacion, $endDegradacion);
             $this->crearRegistrosParaCiclo($cicloMaduracion, $startMaduracion, $endMaduracion);
@@ -107,40 +112,47 @@ class RealistaSeeder extends Seeder
     }
 
     /**
-     * Crea 10 registros para el ciclo con fechas entre $startDate y $endDate
-     * y cada registro lleva Antes, Durante, Despues con la misma fecha de creación.
+     * Crea hasta 10 registros para el ciclo, espaciados 3 días.
+     * Si $fechaActual se pasa de $endDate, paramos.
      */
     private function crearRegistrosParaCiclo(Ciclo $ciclo, Carbon $startDate, Carbon $endDate)
     {
-        for ($i = 1; $i <= 10; $i++) {
-            $fechaRegistro = Carbon::createFromTimestamp(
-                rand($startDate->timestamp, $endDate->timestamp)
-            );
+        $numRegistros = 10;
+        $fechaActual = $startDate->copy();
 
-            // Creas el registro
+        for ($i = 1; $i <= $numRegistros; $i++) {
+            // Si sobrepasamos la fecha final, rompemos el bucle
+            if ($fechaActual->greaterThan($endDate)) {
+                break;
+            }
+
+            // Creamos el registro en la fecha actual
             $registro = Registro::factory()->create([
                 'ciclo_id'       => $ciclo->id,
                 'compostera_id'  => $ciclo->compostera_id,
-                'created_at'     => $fechaRegistro,
-                'updated_at'     => $fechaRegistro,
+                'created_at'     => $fechaActual,
+                'updated_at'     => $fechaActual,
             ]);
 
-            // Fases antes/durante/despues
+            // Creamos Antes, Durante, Después con la misma fecha
             Antes::factory()->create([
                 'registro_id' => $registro->id,
-                'created_at'  => $fechaRegistro,
-                'updated_at'  => $fechaRegistro,
+                'created_at'  => $fechaActual,
+                'updated_at'  => $fechaActual,
             ]);
             Durante::factory()->create([
                 'registro_id' => $registro->id,
-                'created_at'  => $fechaRegistro,
-                'updated_at'  => $fechaRegistro,
+                'created_at'  => $fechaActual,
+                'updated_at'  => $fechaActual,
             ]);
             Despues::factory()->create([
                 'registro_id' => $registro->id,
-                'created_at'  => $fechaRegistro,
-                'updated_at'  => $fechaRegistro,
+                'created_at'  => $fechaActual,
+                'updated_at'  => $fechaActual,
             ]);
+
+            // Avanzamos 3 días para el siguiente registro
+            $fechaActual->addDays(3);
         }
     }
 }
