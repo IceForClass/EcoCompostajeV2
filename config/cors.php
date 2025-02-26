@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['GET', "POST", "PATCH", "PUT", "DELETE"],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://pabloapi.informaticamajada.es'],
     
     'allowed_origins_patterns' => ['*'],
 
