@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['https://pabloapi.informaticamajada.es'],
     
-    'allowed_origins_patterns' => ['/^https:\/\/.*\.informaticamajada\.es$/'], // Permitir cualquier subdominio
+    'allowed_origins_patterns' => [],
 
     // 'allowed_origins' => ['https://navet21.github.io'],
     
