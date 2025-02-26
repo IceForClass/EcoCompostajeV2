@@ -77,6 +77,16 @@ Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
 Route::get('ultimoCiclo/{compostera_id}', [ComposteraCiclosController::class, 'ultimoCiclo']);
 Route::get('ultimoBolo' , [BoloController::class, 'ultimobolo']);
 
+//Credenciales desde el .env
+
+Route::get('/get-google-maps-credentials', function () {
+    return response()->json([
+        'api_key' => env('API_KEY_MAPA'),
+        'map_id' => env('MAP_ID')
+    ]);
+});
+
+
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
 // Route::get('exactbolo/composter3', [BoloController::class, 'bolocomposter3']);
