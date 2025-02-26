@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'pabloapi.informaticamajada.es,pablo.informaticamajada.es,.informaticamajada.es')),
+'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'pablo.informaticamajada.es,.informaticamajada.es')),
 
 
     /*
