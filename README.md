@@ -16,11 +16,11 @@
 ```cmd
 composer install
 ```
-
+> Refresca todo el caché de Laravel
  ```cmd
 php artisan optimize:clear
 ```
-
+> Reinicias el servicio de php que debes tener previamente instalado
 ```cmd
 sudo service php8.3-fpm reload
 ```
