@@ -37,6 +37,12 @@ class CentroSeeder extends Seeder
                 'direccion' => 'Calle Lugar Muelle de los Pescadores, s/n, El Cotillo, España'
             ]
         );
+        Centro::factory()->create(
+            [
+                'tipo' => 'privado',
+                'nombre' => 'BioCycle',
+            ]
+        );
         // Centro::factory(9)->create();
     }
 }
