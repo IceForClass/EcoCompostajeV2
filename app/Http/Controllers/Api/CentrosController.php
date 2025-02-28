@@ -7,6 +7,7 @@ use App\Models\Compostera;
 use App\Models\Registro;
 use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\Controller;
+use App\Models\Bolo;
 
 class CentrosController extends Controller
 {
@@ -36,6 +37,18 @@ class CentrosController extends Controller
         $centros = Centro::find($centroId);
         return response()->json($centros->users);
     }
+    
+    public function bolosCentro($centroId)
+{
+    $bolos = Bolo::whereHas('ciclos', function($query) use ($centroId) {
+        $query->whereHas('compostera', function($query) use ($centroId) {
+            $query->where('centro_id', $centroId);
+        });
+    })->get();
+
+    return response()->json($bolos);
+}
+
 
     
 }
