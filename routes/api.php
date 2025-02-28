@@ -86,6 +86,12 @@ Route::get('/get-google-maps-credentials', function () {
     ]);
 });
 
+Route::get('/get-bugfender-key', function () {
+    return response()->json([
+        'apiKey' => env('API_BUGFENDER_KEY')
+    ]);
+});
+
 
 // Route::get('exactbolo/composter1', [BoloController::class, 'bolocomposter1']);
 // Route::get('exactbolo/composter2', [BoloController::class, 'bolocomposter2']);
