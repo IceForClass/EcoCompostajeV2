@@ -39,6 +39,10 @@ class RealistaSeeder extends Seeder
                 'nombre'    => 'CEIP El Tostón',
                 'direccion' => 'Calle Lugar Muelle de los Pescadores, s/n, El Cotillo, España',
             ],
+            [
+                'tipo'      => 'privado',
+                'nombre'    => 'BioCycle',
+            ],
         ];
 
         foreach ($centrosData as $cd) {
@@ -66,52 +70,52 @@ class RealistaSeeder extends Seeder
         }
 
         // 3) Creamos SOLO 10 bolos en total (no 5 por cada centro)
-        $bolos = Bolo::factory(10)->create();
+        // $bolos = Bolo::factory(10)->create();
 
         // 4) Para cada bolo, elegimos un centro aleatorio y creamos 3 ciclos
-        foreach ($bolos as $bolo) {
-            // Selecciona un centro al azar
-            $centro = $centros->random();
+        // foreach ($bolos as $bolo) {
+        //     // Selecciona un centro al azar
+        //     $centro = $centros->random();
 
-            // Obtenemos sus 3 composteras
-            $compAporte      = $centro->composteras->where('tipo', 'aporte')->first();
-            $compDegradacion = $centro->composteras->where('tipo', 'degradacion')->first();
-            $compMaduracion  = $centro->composteras->where('tipo', 'maduracion')->first();
+        //     // Obtenemos sus 3 composteras
+        //     $compAporte      = $centro->composteras->where('tipo', 'aporte')->first();
+        //     $compDegradacion = $centro->composteras->where('tipo', 'degradacion')->first();
+        //     $compMaduracion  = $centro->composteras->where('tipo', 'maduracion')->first();
 
-            // Fechas simuladas para los ciclos
-            $startAporte = Carbon::now()->subDays(rand(40, 60)); // hace 40-60 días
-            $endAporte   = $startAporte->copy()->addDays(rand(5, 10));
+        //     // Fechas simuladas para los ciclos
+        //     $startAporte = Carbon::now()->subDays(rand(40, 60)); // hace 40-60 días
+        //     $endAporte   = $startAporte->copy()->addDays(rand(5, 10));
 
-            $startDegradacion = $endAporte->copy();
-            $endDegradacion   = $startDegradacion->copy()->addDays(rand(5, 10));
+        //     $startDegradacion = $endAporte->copy();
+        //     $endDegradacion   = $startDegradacion->copy()->addDays(rand(5, 10));
 
-            $startMaduracion  = $endDegradacion->copy();
-            $endMaduracion    = $startMaduracion->copy()->addDays(rand(1, 5));
+        //     $startMaduracion  = $endDegradacion->copy();
+        //     $endMaduracion    = $startMaduracion->copy()->addDays(rand(1, 5));
 
-            // Ciclo aporte
-            $cicloAporte = Ciclo::factory()->create([
-                'bolo_id'       => $bolo->id,
-                'compostera_id' => $compAporte->id,
-                'final'         => $endAporte,
-            ]);
-            // Ciclo degradación
-            $cicloDegradacion = Ciclo::factory()->create([
-                'bolo_id'       => $bolo->id,
-                'compostera_id' => $compDegradacion->id,
-                'final'         => $endDegradacion,
-            ]);
-            // Ciclo maduración
-            $cicloMaduracion = Ciclo::factory()->create([
-                'bolo_id'       => $bolo->id,
-                'compostera_id' => $compMaduracion->id,
-                'final'         => $endMaduracion,
-            ]);
+        //     // Ciclo aporte
+        //     $cicloAporte = Ciclo::factory()->create([
+        //         'bolo_id'       => $bolo->id,
+        //         'compostera_id' => $compAporte->id,
+        //         'final'         => $endAporte,
+        //     ]);
+        //     // Ciclo degradación
+        //     $cicloDegradacion = Ciclo::factory()->create([
+        //         'bolo_id'       => $bolo->id,
+        //         'compostera_id' => $compDegradacion->id,
+        //         'final'         => $endDegradacion,
+        //     ]);
+        //     // Ciclo maduración
+        //     $cicloMaduracion = Ciclo::factory()->create([
+        //         'bolo_id'       => $bolo->id,
+        //         'compostera_id' => $compMaduracion->id,
+        //         'final'         => $endMaduracion,
+        //     ]);
 
-            // 5) Cada Ciclo → 10 registros, con fechas cada 3 días
-            $this->crearRegistrosParaCiclo($cicloAporte, $startAporte, $endAporte);
-            $this->crearRegistrosParaCiclo($cicloDegradacion, $startDegradacion, $endDegradacion);
-            $this->crearRegistrosParaCiclo($cicloMaduracion, $startMaduracion, $endMaduracion);
-        }
+        //     // 5) Cada Ciclo → 10 registros, con fechas cada 3 días
+        //     $this->crearRegistrosParaCiclo($cicloAporte, $startAporte, $endAporte);
+        //     $this->crearRegistrosParaCiclo($cicloDegradacion, $startDegradacion, $endDegradacion);
+        //     $this->crearRegistrosParaCiclo($cicloMaduracion, $startMaduracion, $endMaduracion);
+        // }
     }
 
     /**
