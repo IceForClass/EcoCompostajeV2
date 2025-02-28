@@ -29,7 +29,7 @@ class DespuesRequest extends Request
 
         'registro_id'    => 'required|integer|exists:registros,id',
         'nivel_llenado'  => 'nullable|in:0%,12.5%,25%,37.5%,50%,62.5%,75%,87.5%,100%',
-        'foto' => 'nullable|file|image|mimes:jpeg,png,jpg,heic,heif|max:10240',
+        'foto' => 'nullable|file|image|mimes:jpeg,png,jpg,heic,heif|max:20480',
         'observaciones'  => 'nullable|string|max:1000',
         
     ];
