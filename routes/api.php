@@ -76,6 +76,7 @@ Route::get('durantesBolo/{id}', [BoloController::class, 'duranteBolo']);
 Route::get('registrosBolo/{id}', [BoloController::class, 'registrosBolo']);
 Route::get('ultimoCiclo/{compostera_id}', [ComposteraCiclosController::class, 'ultimoCiclo']);
 Route::get('ultimoBolo' , [BoloController::class, 'ultimobolo']);
+Route::get('centroBolos/{centroId}', [CentrosController::class, 'bolosCentro']);
 
 //Credenciales desde el .env
 

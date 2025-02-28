@@ -32,5 +32,16 @@ class Centro extends Model
     {
         return $this->hasMany(Compostera::class);
     }
+    public function bolosCentro($centroId)
+{
+    $bolos = Bolo::whereHas('ciclos', function($query) use ($centroId) {
+        $query->whereHas('compostera', function($query) use ($centroId) {
+            $query->where('centro_id', $centroId);
+        });
+    })->get();
+
+    return response()->json($bolos);
+}
+
     
 }
