@@ -39,7 +39,7 @@ class DuranteRequest extends Request
         'cantidad_aporteSLitros' => 'nullable|integer|min:0|max:50',
         'cantidad_aporteSKilos' => 'nullable|integer|min:0|max:50',
         'tipo_aporteS' => 'nullable|string|max:255',
-        'foto' => 'nullable|file|image|mimes:jpeg,png,jpg,heic,heif|max:20480',
+        'foto' => 'nullable|file|image|mimes:jpeg,png,jpg|max:7168',
         'observaciones' => 'nullable|string|max:1000',
     ];
 }
