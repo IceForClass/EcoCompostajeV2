@@ -34,7 +34,7 @@ class AntesRequest extends Request
             'olor' => 'nullable|in:sin olor,cuadra,agradable,desagradable',
             'animales'=> 'nullable|boolean',
             'tipo_animal' => 'nullable|string',
-            'foto' => 'nullable|file|image|mimes:jpeg,png,jpg,heic,heif|max:20480',
+            'foto' => 'nullable|file|image|mimes:jpeg,png,jpg|max:7168',
             'observaciones' => 'nullable|string|max:1000',
         ];
     }
