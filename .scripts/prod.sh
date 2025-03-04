@@ -4,7 +4,7 @@
 
     cd /var/www/html/EcoCompostajeV2
 
-    git pull
+    git pull origin main
 
     php artisan optimize:clear
 
