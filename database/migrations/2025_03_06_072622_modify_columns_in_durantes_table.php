@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('durantes', function (Blueprint $table) {
-            $table->decimal('cantidad_aporteVLitros', 6, 2)->change();
-            $table->decimal('cantidad_aporteVKilos', 6, 2)->change();
-            $table->decimal('cantidad_aporteSLitros', 6, 2)->change();
-            $table->decimal('cantidad_aporteSKilos', 6, 2)->change();            
+            $table->float('cantidad_aporteVLitros')->nullable()->change();
+            $table->float('cantidad_aporteVKilos')->nullable()->change();
+            $table->float('cantidad_aporteSLitros')->nullable()->change();
+            $table->float('cantidad_aporteSKilos')->nullable()->change();
         });
     }
+
     /**
      * Reverse the migrations.
      */
