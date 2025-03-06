@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('durantes', function (Blueprint $table) {
-            $table->decimal('cantidad_aporteVLitros', 4, 2)->change();
-            $table->decimal('cantidad_aporteVKilos', 4, 2)->change();
-            $table->decimal('cantidad_aporteSLitros', 4, 2)->change();
-            $table->decimal('cantidad_aporteSKilos', 4, 2)->change();
+            $table->decimal('cantidad_aporteVLitros', 6, 2)->change();
+            $table->decimal('cantidad_aporteVKilos', 6, 2)->change();
+            $table->decimal('cantidad_aporteSLitros', 6, 2)->change();
+            $table->decimal('cantidad_aporteSKilos', 6, 2)->change();            
         });
     }
     /**
